@@ -18,6 +18,7 @@ module.exports = appInfo => {
     // add your middleware config here
     config.middleware = [];
     
+    // MySQL数据库
     config.mysql = {
         // database configuration
         client: {
@@ -36,6 +37,17 @@ module.exports = appInfo => {
         app: true,
         // load into agent, default is close
         agent: false,
+    };
+    
+    // 跨域问题
+    config.security = {
+        csrf: {enable: false},
+        domainWhiteList: [ '*' ]
+    };
+    config.cors = {
+        origin: 'http://localhost:3001',
+        credentials: true,  //允许Cook可以跨域
+        allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
     };
     
     // add your user config here
