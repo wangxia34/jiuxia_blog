@@ -32,8 +32,6 @@ function Login(props) {
             'password':password
         };
         
-        console.log(dataProps);
-        
         axios({
             method: 'post',
             url: servicePath.checkLogin,

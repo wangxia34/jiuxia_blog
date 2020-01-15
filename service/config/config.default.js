@@ -2,6 +2,8 @@
 
 'use strict';
 
+const path = require('path');
+
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -42,13 +44,24 @@ module.exports = appInfo => {
     // 跨域问题
     config.security = {
         csrf: {enable: false},
-        domainWhiteList: [ '*' ]
+        domainWhiteList: ['http://localhost:3001', 'http://localhost:3000']
     };
     config.cors = {
-        origin: 'http://localhost:3001',
+        // origin: 'http://localhost:3001',
         credentials: true,  //允许Cook可以跨域
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
     };
+    
+    config.static = {
+        prefix: "/",
+        dir: path.join(appInfo.baseDir, 'app/public'),
+        dynamic: true,
+        preload: false,
+        maxAge: 0,
+        buffer: false,
+    };
+    
+    
     
     // add your user config here
     const userConfig = {

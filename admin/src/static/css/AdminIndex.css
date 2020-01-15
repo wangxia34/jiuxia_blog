@@ -1,5 +1,32 @@
 .logo {
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
+    height: 40px;
+    background: inherit;
     margin: 16px;
+}
+.userName {
+    float: right;
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    width: 60%;
+    font-size: 1.4rem;
+}
+.show {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+.user-setup {
+    float: right;
+    margin: 0 2em;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.user-setup:hover {
+    color: #37a7d4;
+}
+.a-delete {
+    color: red;
 }
