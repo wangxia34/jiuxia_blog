@@ -26,13 +26,13 @@ class MainController extends Controller{
     
     //后台文章分类信息
     async getTypeInfo(){
-        const resType = await this.app.mysql.select('type');
+        const resType = await this.app.mysql.select('article_type');
         this.ctx.body={data:resType}
     }
     
     async delType() {
         let id = this.ctx.params.id;
-        const res = await this.app.mysql.delete('type',{'id':id});
+        const res = await this.app.mysql.delete('article_type',{'id':id});
         this.ctx.body={data:res}
     }
     
@@ -70,8 +70,8 @@ class MainController extends Controller{
             'article.title as title,'+
             'article.introduce as introduce,'+
             "FROM_UNIXTIME(article.addTime,'%Y-%m-%d' ) as addTime,"+
-            'type.typeName as typeName '+
-            'FROM article LEFT JOIN type ON article.type_id = type.Id '+
+            'article_type.typeName as typeName '+
+            'FROM article LEFT JOIN article_type ON article.type_id = article_type.Id '+
             'ORDER BY article.id DESC ';
         
         const resList = await this.app.mysql.query(sql);
@@ -96,9 +96,9 @@ class MainController extends Controller{
             'article.article_content as article_content,'+
             "FROM_UNIXTIME(article.addTime,'%Y-%m-%d' ) as addTime,"+
             'article.view_count as view_count ,'+
-            'type.typeName as typeName ,'+
-            'type.id as typeId '+
-            'FROM article LEFT JOIN type ON article.type_id = type.Id '+
+            'article_type.typeName as typeName ,'+
+            'article_type.id as typeId '+
+            'FROM article LEFT JOIN article_type ON article.type_id = article_type.Id '+
             'WHERE article.id='+id;
         const result = await this.app.mysql.query(sql);
         this.ctx.body={data:result}

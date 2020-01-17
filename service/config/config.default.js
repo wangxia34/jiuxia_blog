@@ -25,13 +25,13 @@ module.exports = appInfo => {
         // database configuration
         client: {
             // host
-            host: 'localhost',
+            host: '192.168.0.44',
             // port
             port: '3306',
             // username
-            user: 'jiuxia',
+            user: 'root',
             // password
-            password: 'jiuxia123456',
+            password: 'root123456',
             // database
             database: 'jiuxia',
         },
@@ -44,7 +44,7 @@ module.exports = appInfo => {
     // 跨域问题
     config.security = {
         csrf: {enable: false},
-        domainWhiteList: ['http://localhost:3001', 'http://localhost:3000']
+        domainWhiteList: ['http://192.168.0.43:3000', 'http://192.168.0.43:3000']
     };
     config.cors = {
         // origin: 'http://localhost:3001',

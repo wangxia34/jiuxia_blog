@@ -11,8 +11,8 @@ class HomeController extends Controller{
             // 将时间戳换成时间
             "FROM_UNIXTIME(article.addTime,'%Y-%m-%d %H:%i:%s' ) as addTime,"+
             'article.view_count as view_count ,'+
-            '.type.typeName as typeName '+
-            'FROM article LEFT JOIN type ON article.type_id = type.Id';
+            '.article_type.typeName as typeName '+
+            'FROM article LEFT JOIN article_type ON article.type_id = article_type.Id';
         
         const results = await this.app.mysql.query(sql);
         
@@ -31,9 +31,9 @@ class HomeController extends Controller{
             'article.article_content as article_content,'+
             "FROM_UNIXTIME(article.addTime,'%Y-%m-%d %H:%i:%s' ) as addTime,"+
             'article.view_count as view_count ,'+
-            'type.typeName as typeName ,'+
-            'type.id as typeId '+
-            'FROM article LEFT JOIN type ON article.type_id = type.Id '+
+            'article_type.typeName as typeName ,'+
+            'article_type.id as typeId '+
+            'FROM article LEFT JOIN article_type ON article.type_id = article_type.Id '+
             'WHERE article.id='+query.id;
         
 
@@ -45,7 +45,7 @@ class HomeController extends Controller{
     
     //得到类别名称和编号
     async getTypeInfo(){
-        const result = await this.app.mysql.select('type');
+        const result = await this.app.mysql.select('article_type');
         this.ctx.body = {data:result}
     }
     
@@ -57,8 +57,8 @@ class HomeController extends Controller{
             'article.introduce as introduce,'+
             "FROM_UNIXTIME(article.addTime,'%Y-%m-%d %H:%i:%s' ) as addTime,"+
             'article.view_count as view_count ,'+
-            'type.typeName as typeName '+
-            'FROM article LEFT JOIN type ON article.type_id = type.Id '+
+            'article_type.typeName as typeName '+
+            'FROM article LEFT JOIN article_type ON article.type_id = article_type.Id '+
             'WHERE type_id='+id;
         const result = await this.app.mysql.query(sql);
         this.ctx.body={data:result}
