@@ -3,7 +3,7 @@ import Router from 'next/router'
 import Link from 'next/link'
 import axios from 'axios'
 import servicePath from '../config/apiUrl'
-import '../static/style/components/header.css'
+import '../static/style/components/Header.css'
 
 import {Row, Col, Menu, Icon} from 'antd'
 const Header = () => {

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import marked from 'marked'
+import moment from 'moment'
 import '../static/css/AddArticle.css'
 import {Row, Col, Input, Select, Button, DatePicker, message, Breadcrumb} from 'antd'
 import common from '../common/common'
@@ -22,7 +23,7 @@ function AddArticle(props) {
     //简介的markdown内容
     const [introducehtml,setIntroducehtml] = useState('等待编辑');
     //简介的html内容
-    const [showDate,setShowDate] = useState();
+    const [showDate,setShowDate] = useState(moment());
     //发布日期
     const [updateDate,setUpdateDate] = useState();
     //修改日志的日期
@@ -185,10 +186,11 @@ function AddArticle(props) {
                         <Row gutter={10}>
                             <Col span={12}>
                                 <div className="date-select">
-                                    <DatePicker
-                                        onChange={(date, dateString)=>setShowDate(dateString)}
-                                        placeholder="发布日期"
-                                        size="large"
+                                    <DatePicker showTime
+                                                value={moment(showDate)}
+                                                placeholder="发布日期"
+                                                onChange={(date, dateString)=>setShowDate(dateString)}
+                                                size="large"
                                     />
                                 </div>
                             </Col>

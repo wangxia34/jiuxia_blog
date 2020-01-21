@@ -41,6 +41,7 @@ class MainController extends Controller{
         let tmpArticle= this.ctx.request.body;
         
         // tmpArticle.
+        console.log(tmpArticle);
         const result = await this.app.mysql.insert('article',tmpArticle);
         const insertSuccess = result.affectedRows === 1;
         const insertId = result.insertId;
@@ -54,7 +55,8 @@ class MainController extends Controller{
     //修改文章
     async updateArticle(){
         let tmpArticle= this.ctx.request.body;
-        
+    
+        console.log(tmpArticle);
         const result = await this.app.mysql.update('article', tmpArticle);
         const updateSuccess = result.affectedRows === 1;
         // console.log(updateSuccess);
@@ -69,7 +71,7 @@ class MainController extends Controller{
         let sql = 'SELECT article.id as id,'+
             'article.title as title,'+
             'article.introduce as introduce,'+
-            "FROM_UNIXTIME(article.addTime,'%Y-%m-%d' ) as addTime,"+
+            "FROM_UNIXTIME(article.addTime,'%Y-%m-%d %H:%i:%s') as addTime,"+
             'article_type.typeName as typeName '+
             'FROM article LEFT JOIN article_type ON article.type_id = article_type.Id '+
             'ORDER BY article.id DESC ';
@@ -86,7 +88,7 @@ class MainController extends Controller{
     }
 
 
-//根据文章ID得到文章详情，用于修改文章
+    //根据文章ID得到文章详情，用于修改文章
     async getArticleById(){
         let id = this.ctx.params.id;
         
@@ -94,7 +96,7 @@ class MainController extends Controller{
             'article.title as title,'+
             'article.introduce as introduce,'+
             'article.article_content as article_content,'+
-            "FROM_UNIXTIME(article.addTime,'%Y-%m-%d' ) as addTime,"+
+            "FROM_UNIXTIME(article.addTime,'%Y-%m-%d %H:%i:%s') as addTime,"+
             'article.view_count as view_count ,'+
             'article_type.typeName as typeName ,'+
             'article_type.id as typeId '+

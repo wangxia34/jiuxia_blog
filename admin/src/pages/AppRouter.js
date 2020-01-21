@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { HashRouter as Router, Route} from "react-router-dom";
 import Login from './Login'
 import AdminIndex from './AdminIndex'
 function AppRouter(){
     return (
         <Router>
-            <Route path="/login/" exact component={Login} />
+            <Route path="/" exact component={Login} />
+            <Route path="/login/" component={Login} />
             <Route path="/index/" component={AdminIndex} />
         </Router>
     )

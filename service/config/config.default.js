@@ -44,7 +44,7 @@ module.exports = appInfo => {
     // 跨域问题
     config.security = {
         csrf: {enable: false},
-        domainWhiteList: ['http://192.168.0.43:3000', 'http://192.168.0.43:3000']
+        domainWhiteList: ['http://192.168.0.44','http://192.168.0.44:3000','http://192.168.0.43:3000', 'http://192.168.0.43:3001']
     };
     config.cors = {
         // origin: 'http://localhost:3001',

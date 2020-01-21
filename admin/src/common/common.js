@@ -1,11 +1,10 @@
 import axios from 'axios'
-import { createBrowserHistory  } from 'history';
-import {message} from "antd/lib/index";
-import servicePath from "../config/apiUrl"; // hash路由
+import { createHashHistory  } from 'history';
+// import {message} from "antd/lib/index";
+// import servicePath from "../config/apiUrl"; // hash路由
 
-const history = createBrowserHistory({
-    basename: '',             //基链接
-    forceRefresh: true        //是否强制刷新
+const history = createHashHistory({
+    queryKey: false
 });
 
 const common =  {
