@@ -30,6 +30,30 @@ class MainController extends Controller{
         this.ctx.body={data:resType}
     }
     
+    //添加文章类型
+    async addType(){
+        let tmpArticle= this.ctx.request.body;
+        // console.log(tmpArticle);
+        const result = await this.app.mysql.insert('article_type', tmpArticle);
+        const insertSuccess = result.affectedRows === 1;
+        const insertId = result.insertId;
+    
+        this.ctx.body={
+            isScuccess:insertSuccess,
+            insertId:insertId
+        }
+    }
+    //编辑文章类型
+    async updateType(){
+        let tmpArticle= this.ctx.request.body;
+        // console.log(tmpArticle);
+        const result = await this.app.mysql.update('article_type', tmpArticle);
+        const updateSuccess = result.affectedRows === 1;
+        this.ctx.body={
+            isScuccess:updateSuccess
+        }
+    }
+    
     async delType() {
         let id = this.ctx.params.id;
         const res = await this.app.mysql.delete('article_type',{'id':id});
@@ -41,7 +65,7 @@ class MainController extends Controller{
         let tmpArticle= this.ctx.request.body;
         
         // tmpArticle.
-        console.log(tmpArticle);
+        // console.log(tmpArticle);
         const result = await this.app.mysql.insert('article',tmpArticle);
         const insertSuccess = result.affectedRows === 1;
         const insertId = result.insertId;
@@ -56,7 +80,7 @@ class MainController extends Controller{
     async updateArticle(){
         let tmpArticle= this.ctx.request.body;
     
-        console.log(tmpArticle);
+        // console.log(tmpArticle);
         const result = await this.app.mysql.update('article', tmpArticle);
         const updateSuccess = result.affectedRows === 1;
         // console.log(updateSuccess);

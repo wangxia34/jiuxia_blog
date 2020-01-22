@@ -111,8 +111,8 @@ function AddArticle(props) {
         dataProps.title = articleTitle;
         dataProps.article_content =articleContent;
         dataProps.introduce =introducemd;
-        let datetext= showDate.replace('-','/'); //把字符串转换成时间戳
-        dataProps.addTime = (new Date(datetext).getTime())/1000;
+        //把字符串转换成时间戳
+        dataProps.addTime = (new Date(showDate).getTime())/1000;
         // dataProps.part_count = partCount;
         // dataProps.article_content_html = markdownContent;
         // dataProps.introduce_html = introducehtml;

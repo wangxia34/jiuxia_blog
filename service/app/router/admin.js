@@ -10,4 +10,6 @@ module.exports = app =>{
     router.get('/admin/delArticle/:id',adminauth,controller.admin.main.delArticle);
     router.get('/admin/getArticleById/:id',adminauth,controller.admin.main.getArticleById);
     router.get('/admin/delType/:id',adminauth,controller.admin.main.delType);
+    router.post('/admin/addType',adminauth,controller.admin.main.addType);
+    router.post('/admin/updateType',adminauth,controller.admin.main.updateType);
 };

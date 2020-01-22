@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Breadcrumb, Table, Divider, Icon, Modal, message, Form, Input} from 'antd'
+import {Breadcrumb, Table, Divider, Icon, Modal, message, Form, Input, Button} from 'antd'
 import common from '../common/common'
 import servicePath from "../config/apiUrl";
 
@@ -44,21 +44,69 @@ function TypeList(props) {
         });
     };
     
-    const addTypeOk = () => {
-    
-        addTypeCancel()
+    const addTypeOk = (e) => {
+        e.preventDefault();
+        props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                // console.log('Received values of form: ', values);
+                if (!values.id) {
+                    common.postRequest(servicePath.addType, values, (res)=>{
+                        if(res.data.isScuccess){
+                            message.success('文章类型保存成功');
+                            getTypeList();
+                            addTypeCancel()
+                        }else{
+                            message.error('文章类型保存失败');
+                        }
+                    });
+                } else {
+                    common.postRequest(servicePath.updateType, values, (res)=>{
+                        if(res.data.isScuccess){
+                            message.success('文章类型保存成功');
+                            getTypeList();
+                            addTypeCancel()
+                        }else{
+                            message.error('文章类型保存失败');
+                        }
+                    })
+                }
+                
+                
+            }
+        });
+        
+        
     };
     
     const addTypeCancel = () => {
+        props.form.resetFields();
         setVisible(false)
     };
     
     const editType = (item) => {
+        // console.log(item);
+        props.form.setFieldsValue({
+            icon: item.icon,
+            id: item.id,
+            orderNum: item.orderNum,
+            typeName: item.typeName
+        });
         setVisible(true)
     };
     
-    const addTypeSubmit = () => {
+    const addType = () => {
+        setVisible(true)
+    };
     
+    const formItemLayout = {
+        labelCol: {
+            xs: { span: 24 },
+            sm: { span: 6 },
+        },
+        wrapperCol: {
+            xs: { span: 24 },
+            sm: { span: 18 },
+        },
     };
     
     useEffect(()=> {
@@ -72,6 +120,9 @@ function TypeList(props) {
                 <Breadcrumb.Item>文章类型管理</Breadcrumb.Item>
             </Breadcrumb>
             <div>
+                <div>
+                    <Button onClick={addType}>添加文章类型</Button>
+                </div>
                 <Table dataSource={typeList} columns={[
                     {
                         title: '编号',
@@ -112,23 +163,54 @@ function TypeList(props) {
                     confirmLoading={confirmLoading}
                     onCancel={addTypeCancel}
                 >
-                    <Form onSubmit={addTypeSubmit}>
-                        <Form.Item label="orderNum">
-                            {getFieldDecorator('email', {
+                    <Form style={{"marginRight": "10%"}} {...formItemLayout}>
+                        <Form.Item label="排序">
+                            {getFieldDecorator('orderNum', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!',
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!',
-                                    },
+                                        message: '请确认文章类型排序！',
+                                    },{
+                                        message:'只能输入数字！',
+                                        pattern: /^[0-9]+$/
+                                    }
                                 ],
                             })(<Input />)}
                         </Form.Item>
+                        <Form.Item label="文章类型">
+                            {getFieldDecorator('typeName', {
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: '请输入文章类型！',
+                                    }, {
+                                        pattern: /^[-_.a-zA-Z0-9\u4e00-\u9fa5]+$/,
+                                        message: '包含特殊字符！',
+                                    }, {
+                                        max: 20,
+                                        message: '不能大于20个字符！',
+                                    }
+                                ],
+                            })(<Input />)}
+                        </Form.Item>
+                        <Form.Item label="图标">
+                            {getFieldDecorator('icon', {
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: '请输入图标名称！',
+                                    }, {
+                                        pattern: /^[-_a-zA-Z0-9]+$/,
+                                        message: '包含特殊字符！',
+                                    }, {
+                                        max: 20,
+                                        message: '不能大于20个字符！',
+                                    }
+                                ],
+                            })(<Input />)}
+                        </Form.Item>
+                        {getFieldDecorator('id')(<Input type="hidden" />)}
                     </Form>
-                    
                 </Modal>
             </div>
         </div>
