@@ -7,7 +7,7 @@ class MainController extends Controller{
     //判断用户名密码是否正确
     async checkLogin(){
         
-        console.log(this.ctx.request);
+        // console.log(this.ctx.request);
         let userName = this.ctx.request.body.userName;
         let password = this.ctx.request.body.password;
         const sql = " SELECT userName FROM admin_user WHERE userName = '"+userName +

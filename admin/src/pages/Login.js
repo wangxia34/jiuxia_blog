@@ -1,6 +1,7 @@
 import React , {useState, useEffect} from 'react';
 import axios from 'axios'
 import 'antd/dist/antd.css';
+import MD5 from 'crypto-js/md5'
 import {Card, Input, Icon, Button, Spin, message} from 'antd';
 import '../static/css/Login.css';
 import servicePath from '../config/apiUrl'
@@ -27,9 +28,11 @@ function Login(props) {
             setIsLoading(false);
             return false
         }
+        
+        console.log(MD5(password).toString());
         let dataProps = {
-            'userName':userName,
-            'password':password
+            'userName': userName,
+            'password': MD5(password).toString()
         };
         
         axios({

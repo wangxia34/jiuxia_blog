@@ -12,7 +12,7 @@ class HomeController extends Controller{
             "FROM_UNIXTIME(article.addTime,'%Y-%m-%d %H:%i:%s' ) as addTime,"+
             'article.view_count as view_count ,'+
             '.article_type.typeName as typeName '+
-            'FROM article LEFT JOIN article_type ON article.type_id = article_type.Id';
+            'FROM article LEFT JOIN article_type ON article.type_id = article_type.id';
         
         const results = await this.app.mysql.query(sql);
         
@@ -33,7 +33,7 @@ class HomeController extends Controller{
             'article.view_count as view_count ,'+
             'article_type.typeName as typeName ,'+
             'article_type.id as typeId '+
-            'FROM article LEFT JOIN article_type ON article.type_id = article_type.Id '+
+            'FROM article LEFT JOIN article_type ON article.type_id = article_type.id '+
             'WHERE article.id='+query.id;
         
 
@@ -58,11 +58,11 @@ class HomeController extends Controller{
             "FROM_UNIXTIME(article.addTime,'%Y-%m-%d %H:%i:%s' ) as addTime,"+
             'article.view_count as view_count ,'+
             'article_type.typeName as typeName '+
-            'FROM article LEFT JOIN article_type ON article.type_id = article_type.Id '+
+            'FROM article LEFT JOIN article_type ON article.type_id = article_type.id '+
             'WHERE type_id='+id;
         const result = await this.app.mysql.query(sql);
         this.ctx.body={data:result}
     }
 }
 
-module.exports = HomeController
+module.exports = HomeController;

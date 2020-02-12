@@ -25,13 +25,13 @@ module.exports = appInfo => {
         // database configuration
         client: {
             // host
-            host: '192.168.0.44',
+            host: '49.235.114.228',
             // port
             port: '3306',
             // username
             user: 'root',
             // password
-            password: 'root123456',
+            password: 'capsheaf#8686',
             // database
             database: 'jiuxia',
         },
@@ -44,10 +44,9 @@ module.exports = appInfo => {
     // 跨域问题
     config.security = {
         csrf: {enable: false},
-        domainWhiteList: ['http://192.168.0.44','http://192.168.0.44:3000','http://192.168.0.43:3000', 'http://192.168.0.43:3001']
+        domainWhiteList: ['http://49.235.114.228','http://49.235.114.228:3000','http://192.168.160.43:3000', 'http://192.168.160.43:3001']
     };
     config.cors = {
-        // origin: 'http://localhost:3001',
         credentials: true,  //允许Cook可以跨域
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
     };

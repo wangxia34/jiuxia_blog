@@ -1,5 +1,5 @@
-let ipUrl = 'http://192.168.0.43:7001/admin/';
-let ipStatic = 'http://192.168.0.43:7001/';
+let ipUrl = 'http://192.168.160.43:7001/admin/';
+let ipStatic = 'http://192.168.160.43:7001/';
 
 let servicePath = {
     ipStatic: ipStatic,

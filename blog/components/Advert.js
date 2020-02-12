@@ -1,9 +1,10 @@
 import '../static/style/components/advert.css'
+import servicePath from "../../admin/src/config/apiUrl";
 
 const Advert = ()=>{
     return (
         <div className="ad-div comm-box">
-            <div><img src="http://cdn.duitang.com/uploads/item/201211/21/20121121100635_yPV3U.jpeg" width="100%" /></div>
+            <div><img src={servicePath.userImg} width="100%" /></div>
         </div>
     )
 }
