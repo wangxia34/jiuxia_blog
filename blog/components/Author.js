@@ -1,6 +1,6 @@
 import {Avatar, Divider} from 'antd'
 import '../static/style/components/author.css'
-import servicePath from "../../admin/src/config/apiUrl";
+import servicePath from "../config/apiUrl";
 
 const Author =()=>{
     

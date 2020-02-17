@@ -3,7 +3,7 @@ import Head from 'next/head'
 import {Avatar, Button, Spin} from 'antd'
 import '../static/style/pages/index.css'
 import Header from '../components/Header'
-import servicePath from "../../admin/src/config/apiUrl";
+import servicePath from "../config/apiUrl";
 import Router from "next/router";
 
 const Home = () => {

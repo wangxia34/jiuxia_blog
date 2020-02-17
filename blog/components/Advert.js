@@ -1,5 +1,5 @@
 import '../static/style/components/advert.css'
-import servicePath from "../../admin/src/config/apiUrl";
+import servicePath from "../config/apiUrl";
 
 const Advert = ()=>{
     return (
