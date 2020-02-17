@@ -1,5 +1,5 @@
-let ipUrl = 'http://192.168.160.43:7001/default/';
-let ipStatic = 'http://192.168.160.43:7001/';
+let ipUrl = 'http://49.235.114.228:7001/default/';
+let ipStatic = 'http://49.235.114.228:7001/';
 
 let servicePath = {
     getArticleList:ipUrl + 'getArticleList' ,  //  首页文章列表接口

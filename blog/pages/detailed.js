@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect } from 'react'
 import Head from 'next/head'
 import axios from 'axios'
 import {Row, Col, Affix, Icon ,Breadcrumb  } from 'antd'
@@ -39,7 +39,8 @@ const Detailed = (props) => {
         }
     });
     
-    console.log(props);
+    
+    // console.log(props);
     
     let html = marked(props.article_content);
     
@@ -54,7 +55,7 @@ const Detailed = (props) => {
                 <div>
                     <div className="bread-div">
                         <Breadcrumb>
-                            <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
+                            <Breadcrumb.Item><a href="/list?id=home">全部文章</a></Breadcrumb.Item>
                             <Breadcrumb.Item>{props.typeName}</Breadcrumb.Item>
                             <Breadcrumb.Item>{props.title}</Breadcrumb.Item>
                         </Breadcrumb>

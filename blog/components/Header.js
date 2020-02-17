@@ -1,34 +1,20 @@
 import React,{useState,useEffect} from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
-import axios from 'axios'
-import servicePath from '../config/apiUrl'
 import '../static/style/components/Header.css'
 
 import {Row, Col, Menu, Icon} from 'antd'
 const Header = () => {
-    const [navArray , setNavArray] = useState([]);
-    
-    useEffect(()=>{
-        const fetchData = async ()=>{
-            const result= await axios(servicePath.getTypeInfo).then(
-                (res)=>{
-                    setNavArray(res.data.data);
-                    return res.data.data
-                }
-            );
-            setNavArray(result)
-        };
-        fetchData()
-    },[]);
     
     //跳转到列表页
     const handleClick = (e)=>{
-        console.log(e);
-        if(e.key === "0"){
-            Router.push('/index')
-        }else{
-            Router.push('/list?id='+e.key)
+        switch (e.key) {
+            case "home":
+                Router.push('/index');
+                break;
+            case "book":
+                Router.push('/list?id=home');
+                break;
         }
     };
     
@@ -49,28 +35,14 @@ const Header = () => {
                         mode="horizontal"
                         onClick={handleClick}
                     >
-                        <Menu.Item key="0">
+                        <Menu.Item key="home">
                             <Icon type="home" />
                             首页
                         </Menu.Item>
-                        {
-                            navArray.map((item)=>{
-                                return(
-                                    <Menu.Item key={item.id}>
-                                        <Icon type={item.icon} />
-                                        {item.typeName}
-                                    </Menu.Item>
-                                )
-                            })
-                        }
-                        {/*<Menu.Item key="video">
-                            <Icon type="youtube" />
-                            视频
+                        <Menu.Item key="book">
+                            <Icon type="book" />
+                            学习笔记
                         </Menu.Item>
-                        <Menu.Item key="life">
-                            <Icon type="smile" />
-                            生活
-                        </Menu.Item>*/}
                     </Menu>
                 </Col>
             </Row>
