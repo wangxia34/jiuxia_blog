@@ -4,10 +4,12 @@ import axios from 'axios'
 import servicePath from '../config/apiUrl'
 import {Menu, Icon} from 'antd'
 
-const NoteType = (props) => {
+function NoteType(props) {
     const [navArray , setNavArray] = useState([]);
     
     useEffect(()=>{
+        
+        console.log("useEffect");
         const fetchData = async ()=>{
             const result= await axios(servicePath.getTypeInfo).then(
                 (res)=>{
@@ -22,6 +24,8 @@ const NoteType = (props) => {
     
     //跳转到列表页
     const handleClick = (e) => {
+        
+        console.log(e)
         if (e.key === "home") {
             Router.push('/list?id=home');
         }
@@ -54,7 +58,7 @@ const NoteType = (props) => {
             </Menu>
         </>
     )
-};
+}
 
 
 export default NoteType

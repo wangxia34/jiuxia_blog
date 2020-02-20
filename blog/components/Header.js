@@ -8,6 +8,7 @@ const Header = () => {
     
     //跳转到列表页
     const handleClick = (e)=>{
+        // console.log(e)
         switch (e.key) {
             case "home":
                 Router.push('/index');

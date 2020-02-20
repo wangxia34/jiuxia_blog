@@ -1,19 +1,22 @@
 import React, {useState, useEffect} from 'react'
 import '../static/css/ArticleList.css'
-import {List, Row, Col, Modal, message, Divider, Icon, Breadcrumb} from 'antd'
+import {List, Row, Col, Modal, message, Divider, Icon, Breadcrumb, Select} from 'antd'
 import common from '../common/common'
 import servicePath from '../config/apiUrl'
 
 const {confirm} = Modal;
+const {Option} = Select;
 
 function ArticleList(props) {
     
-    const [list,setList]=useState([]);
+    const [list, setList]=useState([]);
+    const [filterList, setFilterList]=useState([]);
 
     //得到文章列表
     const getList = ()=>{
         common.getRequest(servicePath.getArticleList, (res) => {
-            setList(res.data.list)
+            setList(res.data.list);
+            setFilterList(res.data.list)
         })
     };
 
@@ -34,6 +37,17 @@ function ArticleList(props) {
         });
     };
     
+    
+    // 文章类别信息
+    const [typeInfo ,setTypeInfo] = useState([]);
+    
+    //从中台得到文章类别信息
+    const getTypeInfo =()=>{
+        common.getRequest(servicePath.getTypeInfo, (res) => {
+            setTypeInfo(res.data.data)
+        })
+    };
+    
     //修改文章
     const updateArticle = (id, checked)=>{
         
@@ -42,8 +56,19 @@ function ArticleList(props) {
     };
     
     useEffect(()=>{
-        getList()
+        getList();
+        getTypeInfo();
     },[]);
+    
+    const selectTypeHandler = (value) => {
+        if (value === "all") {
+            setFilterList(list)
+        } else {
+            let lis = list.filter(item => item.typeName === value);
+    
+            setFilterList(lis)
+        }
+    };
     
     return (
         <div>
@@ -52,53 +77,53 @@ function ArticleList(props) {
                 <Breadcrumb.Item>文章管理</Breadcrumb.Item>
             </Breadcrumb>
             <div>
+                <div>
+                    <Select size="large"
+                            defaultValue="all"
+                            style={{width: 240, margin: '20px 0'}}
+                            onChange={selectTypeHandler}
+                    >
+                        <Option key="all" value="all">全部文章</Option>
+                        {
+                            typeInfo.map((item, index)=>{
+                                return (<Option key={index} value={item.typeName}>{item.typeName}</Option>)
+                            })
+                        }
+                    </Select>
+                </div>
                 <List
                     header={
                         <Row className="list-div">
                             <Col span={8}>
                                 <b>标题</b>
                             </Col>
-                            <Col span={3}>
+                            <Col span={4}>
                                 <b>类别</b>
                             </Col>
-                            <Col span={3}>
+                            <Col span={4}>
                                 <b>发布时间</b>
                             </Col>
-                            <Col span={3}>
-                                <b>集数</b>
-                            </Col>
-                            <Col span={3}>
-                                <b>浏览量</b>
-                            </Col>
-                
-                            <Col span={4}>
+                            <Col span={8}>
                                 <b>操作</b>
                             </Col>
                         </Row>
             
                     }
                     bordered
-                    dataSource={list}
+                    dataSource={filterList}
                     renderItem={item => (
                         <List.Item>
                             <Row className="list-div">
                                 <Col span={8}>
                                     {item.title}
                                 </Col>
-                                <Col span={3}>
+                                <Col span={4}>
                                     {item.typeName}
                                 </Col>
-                                <Col span={3}>
+                                <Col span={4}>
                                     {item.addTime}
                                 </Col>
-                                <Col span={3}>
-                                    共<span>{item.part_count}</span>集
-                                </Col>
-                                <Col span={3}>
-                                    {item.view_count}
-                                </Col>
-                    
-                                <Col span={4}>
+                                <Col span={8}>
                                     <a onClick={()=>{updateArticle(item.id)}}><Icon type="edit" /> 修改</a>
                                     <Divider type="vertical" />
                                     <a onClick={()=>{delArticle(item.id)}} className="a-delete"><Icon type="delete" /> 删除</a>

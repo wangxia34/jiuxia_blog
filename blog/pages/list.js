@@ -44,12 +44,6 @@ const ArticleList = (props) => {
                 </Col>
                 <Col className="comm-content" xs={24} sm={24} md={13} lg={16} xl={11}>
                     <div>
-                        {/*<div className="bread-div">
-                            <Breadcrumb>
-                                <Breadcrumb.Item><a href="/index">首页</a></Breadcrumb.Item>
-                                <Breadcrumb.Item>列表</Breadcrumb.Item>
-                            </Breadcrumb>
-                        </div>*/}
                         <List
                             header={<Breadcrumb>
                                 <Breadcrumb.Item><a href="/list?id=home">学习笔记</a></Breadcrumb.Item>

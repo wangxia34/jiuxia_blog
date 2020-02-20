@@ -63,3 +63,24 @@ body {
 .ant-spin-nested-loading > div > .ant-spin {
      max-height: none;
 }
+
+blockquote {
+    margin: 0 0 1em;
+    border-left: 4px solid #cbcbcb;
+    padding: 10px 10px 10px 30px;
+    background-color: #f8f8f8;
+}
+h1, h2, h3, h4, h5, h6 {
+     font-weight: bold;
+}
+kbd {
+    display: inline-block;
+    background-color: #f3f3f3;
+    border: 1px solid #b9d4fd;
+    border-radius: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #4f4f4f;
+    margin: 0 3px;
+}

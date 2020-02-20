@@ -12,7 +12,8 @@ class HomeController extends Controller{
             "FROM_UNIXTIME(article.addTime,'%Y-%m-%d %H:%i:%s' ) as addTime,"+
             'article.view_count as view_count ,'+
             '.article_type.typeName as typeName '+
-            'FROM article LEFT JOIN article_type ON article.type_id = article_type.id';
+            'FROM article LEFT JOIN article_type ON article.type_id = article_type.id ' +
+            'ORDER BY addTime DESC';
         
         const results = await this.app.mysql.query(sql);
         
@@ -59,7 +60,8 @@ class HomeController extends Controller{
             'article.view_count as view_count ,'+
             'article_type.typeName as typeName '+
             'FROM article LEFT JOIN article_type ON article.type_id = article_type.id '+
-            'WHERE type_id='+id;
+            'WHERE type_id='+id + ' ' +
+            'ORDER BY addTime DESC';
         const result = await this.app.mysql.query(sql);
         this.ctx.body={data:result}
     }

@@ -73,8 +73,7 @@ code {
 iframe{
     height: 34rem;
 }
-.detailed-content  img{
-    width: 100%;
+.detailed-content img{
     border:1px solid #f3f3f3;
 }
 .title-level3{
@@ -86,3 +85,35 @@ iframe{
 .ant-anchor-wrapper{
     padding: 5px !important;
 }
+
+.detailed-content table {
+    background-color: transparent;
+    border-spacing: 0;
+}
+.detailed-content table {
+    border-collapse: collapse;
+    display: table;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 24px;
+}
+.detailed-content table tr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+}
+.detailed-content table tr td,
+.detailed-content table tr th {
+    font-size: 14px;
+    color: #4f4f4f;
+    line-height: 22px;
+    border: 1px solid #ddd;
+    padding: 8px;
+    word-break: normal!important;
+    vertical-align: middle;
+}
+.detailed-content table tr th {
+    font-weight: 700;
+    background-color: #eff3f5;
+}
+
