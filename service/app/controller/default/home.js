@@ -46,7 +46,9 @@ class HomeController extends Controller{
     
     //得到类别名称和编号
     async getTypeInfo(){
-        const result = await this.app.mysql.select('article_type');
+        const result = await this.app.mysql.select('article_type', {
+            orders: [['orderNum','asc'], ['id','asc']]
+        });
         this.ctx.body = {data:result}
     }
     
@@ -64,6 +66,18 @@ class HomeController extends Controller{
             'ORDER BY addTime DESC';
         const result = await this.app.mysql.query(sql);
         this.ctx.body={data:result}
+    }
+    
+    async setViewCount() {
+        let id = this.ctx.query.id;
+        let item = await this.app.mysql.get("article",{id: id});
+        // console.log(item.view_count);
+        
+        const result = await this.app.mysql.update('article', {id: id, view_count: item.view_count + 1});
+        const updateSuccess = result.affectedRows === 1;
+        this.ctx.body={
+            isScuccess:updateSuccess
+        }
     }
 }
 

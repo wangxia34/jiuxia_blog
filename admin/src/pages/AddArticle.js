@@ -119,7 +119,8 @@ function AddArticle(props) {
     
     
         if (articleId === 0) {
-            dataProps.view_count =Math.ceil(Math.random()*100)+1000;
+            // dataProps.view_count =Math.ceil(Math.random()*100)+1000;
+            dataProps.view_count = 0;
             
             common.postRequest(servicePath.addArticle, dataProps, (res)=>{
                 setArticleId(res.data.insertId);
@@ -170,9 +171,10 @@ function AddArticle(props) {
                                 />
                             </Col>
                             <Col span={4}>
-                                <Select defaultValue={selectedType}
-                                        size="large"
-                                        onChange={selectTypeHandler}
+                                <Select
+                                    value={selectedType}
+                                    size="large"
+                                    onChange={selectTypeHandler}
                                 >
                                     {
                                         typeInfo.map((item, index)=>{

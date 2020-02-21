@@ -125,14 +125,14 @@ function TypeList(props) {
                 </div>
                 <Table dataSource={typeList} columns={[
                     {
-                        title: '编号',
-                        dataIndex: 'id',
-                        key: 'id',
-                    },
-                    {
                         title: '排序',
                         dataIndex: 'orderNum',
                         key: 'orderNum',
+                    },
+                    {
+                        title: '编号',
+                        dataIndex: 'id',
+                        key: 'id',
                     },
                     {
                         title: '文章类型名称',

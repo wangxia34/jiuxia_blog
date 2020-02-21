@@ -118,6 +118,16 @@ Detailed.getInitialProps = async(context)=>{
             params:{id: id},
         }).then((res)=>{
             // console.log(res);
+            axios.get(servicePath.setViewCount, {
+                params:{id: id},
+            }).then((res)=>{
+                if(res.data.isScuccess){
+                    console.log("文章查看次数记录成功！")
+                }else{
+                    console.log("文章查看次数记录失败！")
+                }
+            });
+            
             resolve(res.data.data[0])
         })
     });

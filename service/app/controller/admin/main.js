@@ -26,7 +26,9 @@ class MainController extends Controller{
     
     //后台文章分类信息
     async getTypeInfo(){
-        const resType = await this.app.mysql.select('article_type');
+        const resType = await this.app.mysql.select('article_type', {
+            orders: [['orderNum','asc'], ['id','asc']]
+        });
         this.ctx.body={data:resType}
     }
     
