@@ -35,7 +35,7 @@ const ArticleList = (props) => {
     return (
         <>
             <Head>
-                <title>List</title>
+                <title>学习笔记</title>
             </Head>
             <Header/>
             <Row className="comm-main" type="flex" justify="center">

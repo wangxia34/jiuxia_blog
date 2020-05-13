@@ -16,3 +16,54 @@
     margin-left: .5rem;
     margin-right: .5rem;
 }
+.vertical-text {
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+}
+body .site-title * {
+    font-family: "Noto Serif SC","HiraMinProN-W6","Source Han Serif CN","Source Han Serif SC","Source Han Serif TC",serif;
+}
+.site-title {
+    font-weight: bolder;
+    font-style: normal;
+    width: auto;
+    height: auto;
+    margin: 0 0 0 -2px;
+    text-align: left;
+    font-size: .5em;
+    padding: 0 0 50px 0;
+    border-left: solid #82c3eb 2px;
+    transition: padding .8s ease 0s,background .8s ease 0s;
+    cursor: pointer;
+}
+.site-title:hover {
+    padding: 15px 0 35px 0;
+    color: #fafafa !important;
+    background: #adbcca !important;
+    border-left: solid #606975 2px;
+}
+.site-title :first-child {
+    margin-right: 10px;
+}
+.site-title-small {
+    font-size: 30px;
+    padding-top: 1px;
+    margin-left: 0;
+}
+.site-title-large {
+    font-size: 50px;
+    padding-top: 0;
+    margin-right: 0;
+}
+.a-title {
+    text-decoration: none;
+    background-color: transparent;
+    border-bottom: solid transparent 1px;
+}
+.site-title-small .a-title{
+    color: #7d9bb0;
+}
+.site-title-large .a-title{
+    color: #546774;
+}

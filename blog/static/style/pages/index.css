@@ -22,3 +22,6 @@
 .home-nav {
     margin: 4rem;
 }
+.home-nav>span {
+    margin: 0 .5em;
+}

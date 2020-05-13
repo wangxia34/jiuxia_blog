@@ -75,6 +75,7 @@ iframe{
 }
 .detailed-content img{
     border:1px solid #f3f3f3;
+    max-width: 100%;
 }
 .title-level3{
     display: none !important;

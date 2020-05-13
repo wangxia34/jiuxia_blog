@@ -47,7 +47,8 @@ const Detailed = (props) => {
     return (
     <>
         <Head>
-            <title>博客详细页</title>
+            <title>{props.title}</title>
+            <meta name="keywords" content={props.title + ",jiuxia"}/>
         </Head>
         <Header />
         <Row className="comm-main" type="flex" justify="center">
